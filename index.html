@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BB Health Tech — Eligibility, Financial Responsibility & Embedded Analytics for Behavioral Health</title>
+<meta name="description" content="BBHT gives behavioral health providers real-time eligibility verification, patient financial responsibility calculations, and client-customized embedded analytics — so your team collects more, faster, with less rework." />
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg-elev: #111a2e;
+    --surface: #16223d;
+    --border: #233355;
+    --text: #e6ecf7;
+    --text-dim: #9aa8c5;
+    --teal: #14b8a6;
+    --teal-deep: #0d9488;
+    --teal-soft: #134e4a;
+    --coral: #fb7185;
+    --amber: #f59e0b;
+    --green: #10b981;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 10px 40px rgba(0,0,0,0.35);
+    --maxw: 1200px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { color: var(--teal-deep); }
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11,18,32,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.top .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: var(--maxw); margin: 0 auto;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+  .brand-mark {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #04201d; font-weight: 800; font-size: 13px; letter-spacing: -0.5px;
+  }
+  .brand-wordmark { letter-spacing: -0.3px; }
+  .brand-wordmark span { color: var(--teal); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--text-dim); font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 9px 18px; background: var(--teal); color: #04201d !important;
+    border-radius: 8px; font-weight: 600; font-size: 14px;
+  }
+  .nav-cta:hover { background: var(--teal-deep); color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 80px;
+    background:
+      radial-gradient(ellipse at top, rgba(20,184,166,0.12) 0%, transparent 60%),
+      var(--bg);
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block; padding: 6px 14px;
+    background: rgba(20,184,166,0.1); border: 1px solid rgba(20,184,166,0.3);
+    color: var(--teal); border-radius: 100px; font-size: 13px; font-weight: 600;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(36px, 5.5vw, 60px);
+    font-weight: 800; line-height: 1.1; letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  h1 .accent { color: var(--teal); }
+  .hero-sub {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-dim); max-width: 720px; margin: 0 auto 36px;
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px; border-radius: 10px; font-weight: 600; font-size: 15px;
+    border: none; cursor: pointer; transition: all 0.15s ease;
+  }
+  .btn-primary { background: var(--teal); color: #04201d; }
+  .btn-primary:hover { background: var(--teal-deep); color: #fff; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-visual {
+    margin: 70px auto 0; max-width: 980px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow);
+  }
+  .hero-visual-inner {
+    background: var(--surface); border-radius: 10px; padding: 28px;
+    border: 1px solid var(--border);
+  }
+  .hv-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .hv-stat {
+    background: var(--bg-elev); padding: 16px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .hv-stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .hv-stat-val { font-size: 22px; font-weight: 700; color: var(--text); }
+  .hv-stat-val.teal { color: var(--teal); }
+  .hv-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+  .hv-bar-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+  .hv-row {
+    display: grid; grid-template-columns: 24px 1fr 1fr 1fr 1fr 90px;
+    gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--border);
+    align-items: center; font-size: 13px;
+  }
+  .hv-row.head { color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.g { background: var(--green); }
+  .dot.a { background: var(--amber); }
+  .dot.r { background: var(--coral); }
+  .rf { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .rf.h { background: rgba(16,185,129,0.15); color: var(--green); }
+  .rf.m { background: rgba(245,158,11,0.15); color: var(--amber); }
+
+  /* SECTIONS */
+  section { padding: 90px 0; }
+  section.alt { background: var(--bg-elev); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+  .section-eyebrow {
+    color: var(--teal); font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.15; }
+  .section-sub { font-size: 17px; color: var(--text-dim); }
+
+  /* FEATURES */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    transition: all 0.2s ease;
+  }
+  .feature:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .feature-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(20,184,166,0.12); color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 18px;
+  }
+  .feature h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .feature p { color: var(--text-dim); font-size: 14px; }
+
+  /* PLATFORM */
+  .platform {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .platform.reverse { direction: rtl; }
+  .platform.reverse > * { direction: ltr; }
+  .platform-text h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.2; }
+  .platform-text p { color: var(--text-dim); font-size: 16px; margin-bottom: 20px; }
+  .platform-list { list-style: none; }
+  .platform-list li {
+    padding: 10px 0 10px 28px; position: relative; color: var(--text); font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  .platform-list li:last-child { border-bottom: none; }
+  .platform-list li::before {
+    content: "✓"; position: absolute; left: 0; top: 10px;
+    color: var(--teal); font-weight: 800;
+  }
+  .platform-visual {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  /* QUICKSIGHT VISUAL */
+  .qs-chart { background: var(--bg-elev); border-radius: var(--radius-sm); padding: 20px; border: 1px solid var(--border); }
+  .qs-chart-head { display: flex; justify-content: space-between; margin-bottom: 18px; }
+  .qs-chart-title { font-size: 13px; font-weight: 600; }
+  .qs-chart-meta { font-size: 11px; color: var(--text-dim); }
+  .qs-bars { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+  .qs-bar { flex: 1; background: linear-gradient(180deg, var(--teal) 0%, var(--teal-deep) 100%); border-radius: 3px 3px 0 0; }
+  .qs-legend { display: flex; gap: 16px; margin-top: 12px; font-size: 11px; color: var(--text-dim); }
+
+  /* PHI BANNER */
+  .phi {
+    margin: 0; background: linear-gradient(90deg, rgba(20,184,166,0.08) 0%, rgba(20,184,166,0.02) 100%);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 50px 0; text-align: center;
+  }
+  .phi-eyebrow { color: var(--teal); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .phi h3 { font-size: 24px; font-weight: 700; margin: 10px 0 12px; }
+  .phi p { color: var(--text-dim); max-width: 640px; margin: 0 auto; font-size: 15px; }
+
+  /* CTA */
+  .cta-final { text-align: center; padding: 100px 24px; }
+  .cta-final h2 { margin-bottom: 16px; }
+  .cta-final p { color: var(--text-dim); font-size: 17px; margin-bottom: 32px; max-width: 560px; margin-inline: auto; }
+
+  /* FOOTER */
+  footer { background: var(--bg-elev); border-top: 1px solid var(--border); padding: 50px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-dim); margin-bottom: 14px; }
+  .footer-col a { display: block; color: var(--text); font-size: 14px; padding: 5px 0; }
+  .footer-col a:hover { color: var(--teal); }
+  .footer-tag { color: var(--text-dim); font-size: 14px; max-width: 320px; margin-top: 10px; }
+  .footer-bot {
+    padding-top: 24px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; font-size: 13px; color: var(--text-dim);
+  }
+
+  @media (max-width: 860px) {
+    .features, .platform, .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .platform { gap: 40px; }
+    .nav-links { display: none; }
+    .nav-links .nav-cta { display: inline-flex; }
+    nav.top .nav-links { display: flex; }
+    nav.top .nav-links a:not(.nav-cta) { display: none; }
+    .hv-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">BB</span>
+      <span class="brand-wordmark">Health<span>Tech</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#platform">Platform</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#security">Security</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Request a Demo</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="container">
+    <span class="eyebrow">Built for Behavioral Health</span>
+    <h1>Verify eligibility. Calculate responsibility.<br /><span class="accent">Collect what you're owed.</span></h1>
+    <p class="hero-sub">
+      BBHT gives behavioral health providers real-time eligibility verification, patient financial responsibility calculations, and client-customized embedded analytics — so your team collects more, faster, with less rework.
+    </p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Request a Demo →</a>
+      <a href="#platform" class="btn btn-secondary">See How It Works</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <div class="hv-grid">
+          <div class="hv-stat">
+            <div class="hv-stat-label">Verifications Today</div>
+            <div class="hv-stat-val">247</div>
+            <div class="hv-bar"><div class="hv-bar-fill" style="width:78%"></div></div>
+          </div>
+          <div class="hv-stat">
+            <div class="hv-stat-label">Active Coverage</div>
+            <div class="hv-stat-val teal">198</div>
+            <div class="hv-bar"><div class="hv-bar-fill" style="width:80%"></div></div>
+          </div>
+          <div class="hv-stat">
+            <div class="hv-stat-label">Avg. Response Time</div>
+            <div class="hv-stat-val">3.2s</div>
+            <div class="hv-bar"><div class="hv-bar-fill" style="width:92%"></div></div>
+          </div>
+        </div>
+        <div class="hv-row head">
+          <div></div><div>Patient</div><div>Payer</div><div>Status</div><div>Pt Resp.</div><div style="text-align:right">RF</div>
+        </div>
+        <div class="hv-row"><span class="dot g"></span><div>Patient A</div><div>Acme Health</div><div>Active</div><div>$2,840.50</div><div style="text-align:right"><span class="rf h">H</span></div></div>
+        <div class="hv-row"><span class="dot g"></span><div>Patient B</div><div>BlueCare</div><div>Active</div><div>$1,275.00</div><div style="text-align:right"><span class="rf m">M</span></div></div>
+        <div class="hv-row"><span class="dot a"></span><div>Patient C</div><div>Network One</div><div>N/A</div><div>—</div><div style="text-align:right"><span class="rf m">M</span></div></div>
+        <div class="hv-row" style="border-bottom:none"><span class="dot g"></span><div>Patient D</div><div>Northwind</div><div>Active</div><div>$3,150.25</div><div style="text-align:right"><span class="rf h">H</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="platform">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">The Platform</div>
+      <h2>One workflow. Three problems solved.</h2>
+      <p class="section-sub">Built specifically for behavioral health — DTX, IOP, PHP, residential — where eligibility complexity and financial exposure are highest.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-Time Eligibility (AdmitIQ)</h3>
+        <p>Run eligibility verification in seconds while the patient is still on the phone. Multi-payer support, in-network and out-of-network logic built in.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3>Patient Financial Responsibility</h3>
+        <p>Auto-calculate deductible, OOP, co-insurance, and expected patient responsibility per program — DTX, IOP, PHP — before admission, not after.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Client-Customized Analytics</h3>
+        <p>Embedded QuickSight dashboards tailored to each client's KPIs. Census, denials, AR aging, payer mix — your data, your view.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔔</div>
+        <h3>Payer Alerts, In Context</h3>
+        <p>Coverage terminations, deductible resets, payer outages — surfaced where your team is working, not buried in an inbox.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🗂️</div>
+        <h3>History & Audit Trail</h3>
+        <p>Every verification logged, searchable, re-runnable. Reconcile months later without leaving the screen.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔌</div>
+        <h3>EHR-Aware Imports</h3>
+        <p>Pull census and admission data from your existing EHR. Reduce double-entry, increase verification coverage, surface gaps automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="analytics">
+  <div class="container">
+    <div class="platform">
+      <div class="platform-text">
+        <div class="section-eyebrow">Embedded Analytics</div>
+        <h3>Your data, customized per client — built on Amazon QuickSight.</h3>
+        <p>Most billing tools give you a generic report. BBHT delivers analytics tailored to <em>your</em> KPIs — embedded directly inside the workflow your team already uses.</p>
+        <ul class="platform-list">
+          <li>Census & utilization trending by program (DTX, IOP, PHP, residential)</li>
+          <li>Payer mix, denial reasons, and recovery rates</li>
+          <li>Patient financial responsibility forecasts vs. actuals</li>
+          <li>AR aging, GCR%, write-offs, and collections velocity</li>
+          <li>Custom dashboards per client — not one-size-fits-all</li>
+        </ul>
+      </div>
+      <div class="platform-visual">
+        <div class="qs-chart">
+          <div class="qs-chart-head">
+            <div class="qs-chart-title">Monthly Census × Payer Mix</div>
+            <div class="qs-chart-meta">Last 12 mo.</div>
+          </div>
+          <div class="qs-bars">
+            <div class="qs-bar" style="height:38%"></div>
+            <div class="qs-bar" style="height:52%"></div>
+            <div class="qs-bar" style="height:46%"></div>
+            <div class="qs-bar" style="height:61%"></div>
+            <div class="qs-bar" style="height:58%"></div>
+            <div class="qs-bar" style="height:72%"></div>
+            <div class="qs-bar" style="height:68%"></div>
+            <div class="qs-bar" style="height:80%"></div>
+            <div class="qs-bar" style="height:75%"></div>
+            <div class="qs-bar" style="height:88%"></div>
+            <div class="qs-bar" style="height:84%"></div>
+            <div class="qs-bar" style="height:95%"></div>
+          </div>
+          <div class="qs-legend">
+            <div>● Commercial</div>
+            <div>● Medicaid MCO</div>
+            <div>● Self-Pay</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="platform reverse">
+      <div class="platform-text">
+        <div class="section-eyebrow">AdmitIQ</div>
+        <h3>The fastest path from "patient calling" to "admit decision."</h3>
+        <p>One screen. Verification, financial responsibility, treatment-plan modeling, and history — without tab-switching mid-call. Built on top of a familiar grid framework your team already knows.</p>
+        <ul class="platform-list">
+          <li>Run eligibility in seconds, with reliability scoring (H/M/L)</li>
+          <li>Calculate responsibility per program and service-type matrix</li>
+          <li>Treatment plan modeling with override controls</li>
+          <li>Color-coded payer alerts visible without leaving the workflow</li>
+          <li>Re-run from history with one click — no re-keying</li>
+        </ul>
+      </div>
+      <div class="platform-visual">
+        <div style="background:var(--bg-elev); border-radius:var(--radius-sm); padding:18px; border:1px solid var(--border);">
+          <div style="display:flex; gap:8px; margin-bottom:14px;">
+            <div style="flex:1; background:var(--teal); color:#04201d; padding:8px 12px; border-radius:6px; font-size:13px; font-weight:600; text-align:center;">Calculator</div>
+            <div style="flex:1; padding:8px 12px; border-radius:6px; font-size:13px; color:var(--text-dim); text-align:center; border:1px solid var(--border);">History · 247</div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:14px; margin-bottom:10px;">
+            <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:8px;">Expected Patient Responsibility</div>
+            <div style="font-size:28px; font-weight:800; color:var(--teal);">$2,840.50</div>
+            <div style="font-size:12px; color:var(--text-dim); margin-top:4px;">Out-of-Network · DTX-IOP · Reliability: <span style="color:var(--green); font-weight:700;">H</span></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px;">
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px;">
+              <div style="color:var(--text-dim); font-size:11px;">Deductible</div>
+              <div style="font-weight:700;">$1,200 / $2,500</div>
+            </div>
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px;">
+              <div style="color:var(--text-dim); font-size:11px;">OOP Max</div>
+              <div style="font-weight:700;">$3,840 / $6,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="phi" id="security">
+  <div class="container">
+    <div class="phi-eyebrow">Security & Compliance</div>
+    <h3>HIPAA-aware by design.</h3>
+    <p>BBHT is built for organizations that handle protected health information every day. Role-based access, audit logging, and an active roadmap toward AWS Bedrock-backed AI capabilities for PHI-safe automation — without sending sensitive data to unprotected cloud LLMs.</p>
+  </div>
+</div>
+
+<section class="alt" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Why BBHT</div>
+      <h2>We don't sell software. We solve revenue leaks.</h2>
+      <p class="section-sub">Behavioral health providers lose meaningful revenue to bad eligibility data, missed deductibles, and analytics that don't reflect their actual book. BBHT was built — by operators — to close those gaps in one platform.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3>Behavioral-Health Specific</h3>
+        <p>We don't try to be everything to every specialty. DTX, IOP, PHP, residential — that's our lane and we know it cold.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <h3>Client-Customized, Not One-Size</h3>
+        <p>Every client gets analytics built around their KPIs — not a generic dashboard with the logo swapped.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚀</div>
+        <h3>Operator-Led</h3>
+        <p>Built by a team that's lived the AR cycle, the denial appeals, the payer phone tree. We know where the friction is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-final" id="contact">
+  <div class="container">
+    <h2>Ready to see your collections curve change?</h2>
+    <p>Walk through AdmitIQ and a customized analytics demo with our team. No pitch deck — just your numbers.</p>
+    <div class="cta-row">
+      <a href="mailto:hello@bbhealthtech.com" class="btn btn-primary">Request a Demo →</a>
+      <a href="#platform" class="btn btn-secondary">Explore Platform</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:8px;">
+          <span class="brand-mark">BB</span>
+          <span class="brand-wordmark">Health<span>Tech</span></span>
+        </div>
+        <p class="footer-tag">Eligibility, financial responsibility, and embedded analytics — purpose-built for behavioral health.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="#platform">AdmitIQ</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#security">Security</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">HIPAA Notice</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <div>© BB Health Tech. All rights reserved.</div>
+      <div>Built for behavioral health.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
